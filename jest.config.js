@@ -29,7 +29,7 @@ module.exports = {
       tsconfig: 'tsconfig.json',
     },
   },
-  moduleNameMapping: {
+  moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
   },
   verbose: true,
