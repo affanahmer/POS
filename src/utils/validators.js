@@ -1,4 +1,4 @@
-import { VALIDATION_RULES } from './constants';
+import { VALIDATION_RULES, MEASUREMENT_FIELDS } from './constants';
 
 // Validation functions for GarmentPOS app
 
@@ -13,16 +13,14 @@ export const validate = (value, rules) => {
 
   if (value && rules.minLength && value.length < rules.minLength) {
     errors.push(
-      `${rules.field || 'Field'} must be at least ${
-        rules.minLength
+      `${rules.field || 'Field'} must be at least ${rules.minLength
       } characters`,
     );
   }
 
   if (value && rules.maxLength && value.length > rules.maxLength) {
     errors.push(
-      `${rules.field || 'Field'} must be no more than ${
-        rules.maxLength
+      `${rules.field || 'Field'} must be no more than ${rules.maxLength
       } characters`,
     );
   }
@@ -117,7 +115,7 @@ export const validateOrder = orderData => {
 export const validateMeasurements = (measurements, type = 'shirt') => {
   const errors = [];
   const fields =
-    type === 'shirt' ? VALIDATION_RULES.shirt : VALIDATION_RULES.trouser;
+    type === 'shirt' ? MEASUREMENT_FIELDS.shirt : MEASUREMENT_FIELDS.trouser;
 
   // Check if at least one measurement is provided
   const hasMeasurements = fields.some(

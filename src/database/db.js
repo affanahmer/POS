@@ -255,7 +255,13 @@ const updateMeasurementFields = async () => {
     const tableInfo = await executeQuery(
       'PRAGMA table_info(measurements_local)',
     );
-    const hasNewLength = tableInfo.rows.some(row => row.name === 'length');
+    let hasNewLength = false;
+    for (let i = 0; i < tableInfo.rows.length; i++) {
+      if (tableInfo.rows.item(i).name === 'length') {
+        hasNewLength = true;
+        break;
+      }
+    }
 
     if (!hasNewLength) {
       // Add new fields
@@ -352,9 +358,8 @@ export const selectRecords = async (
   whereClause = '',
   whereParams = [],
 ) => {
-  const query = `SELECT * FROM ${table} ${
-    whereClause ? `WHERE ${whereClause}` : ''
-  }`;
+  const query = `SELECT * FROM ${table} ${whereClause ? `WHERE ${whereClause}` : ''
+    }`;
   const results = await executeQuery(query, whereParams);
 
   const records = [];

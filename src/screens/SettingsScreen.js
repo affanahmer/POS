@@ -15,7 +15,7 @@ import { useTheme } from '../context/ThemeContext';
 
 const SettingsScreen = ({ navigation }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const { syncStatus, performSync, lastSyncTime } = useSync();
+  const { isOnline, performSync, lastSync } = useSync();
   const { currentTheme, toggleDarkMode, getThemeColors, isDarkMode } =
     useTheme();
 
@@ -175,13 +175,13 @@ const SettingsScreen = ({ navigation }) => {
 
         {renderSettingItem(
           'Sync Data',
-          `Last sync: ${lastSyncTime || 'Never'}`,
+          `Last sync: ${lastSync || 'Never'}`,
           handleSync,
           isLoading ? (
             <ActivityIndicator size="small" color={colors.primary} />
           ) : (
             <Text style={[styles.syncStatus, { color: colors.primary }]}>
-              {syncStatus}
+              {isOnline ? 'Online' : 'Offline'}
             </Text>
           ),
         )}

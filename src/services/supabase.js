@@ -176,6 +176,19 @@ export const getMeasurementsByOrderId = async orderId => {
   return data;
 };
 
+// Delete file from storage
+export const deleteFile = async (path) => {
+  const { error } = await supabase.storage
+    .from(STORAGE_BUCKET)
+    .remove([path]);
+
+  if (error) {
+    throw error;
+  }
+
+  return { success: true };
+};
+
 // Upload image with progress tracking
 export const uploadImageWithProgress = async (imageUri, orderId) => {
   try {

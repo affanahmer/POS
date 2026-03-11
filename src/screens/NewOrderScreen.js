@@ -105,22 +105,15 @@ const NewOrderScreen = () => {
   const handleSaveOrder = async () => {
     setIsLoading(true);
     try {
-      // Generate order ID
-      const orderId = `ORD-${Date.now()}-${Math.random()
-        .toString(36)
-        .substr(2, 9)}`;
-
-      // Prepare order data
+      // Prepare order data (db.js will generate the ID)
       const orderToSave = {
         ...orderData,
-        id: orderId,
-        created_at: new Date().toISOString(),
-        last_updated: new Date().toISOString(),
         sync_status: 'pending',
       };
 
       // Save order locally
       const order = await orderService.createOrder(orderToSave);
+      const orderId = order.id;
 
       // Save measurements if any
       if (Object.keys(measurements).length > 0) {

@@ -136,7 +136,7 @@ const ThemeSettingsScreen = ({ navigation }) => {
 
           <View style={styles.previewSection}>
             <Text style={[styles.colorLabel, { color: colors.text }]}>Preview</Text>
-            <View style={[styles.themePreview, { backgroundColor: customColors.background }]}>
+            <View style={[styles.themePreviewPanel, { backgroundColor: customColors.background }]}>
               <View style={[styles.previewButton, { backgroundColor: customColors.primary }]}>
                 <Text style={styles.previewButtonText}>Button</Text>
               </View>
@@ -172,7 +172,7 @@ const ThemeSettingsScreen = ({ navigation }) => {
 
       <View style={styles.content}>
         <Text style={[styles.sectionTitle, { color: colors.text }]}>Available Themes</Text>
-        
+
         {renderThemeOption(
           THEME_TYPES.LIGHT,
           'Light Mode',
@@ -361,7 +361,7 @@ const styles = StyleSheet.create({
   previewSection: {
     marginTop: 20,
   },
-  themePreview: {
+  themePreviewPanel: {
     padding: 20,
     borderRadius: 10,
     alignItems: 'center',
